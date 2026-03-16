@@ -78,7 +78,41 @@ background: var(--gradient-dark);
 color:#E2E8F0;
 font-feature-settings:"cv02","cv03","cv04","cv11";
 overflow-x: hidden;
+position: relative;
 }
+
+/* Background Image with Animation */
+body::before{
+content:'';
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+background-image: url('IMAGEN FONDO DUBOIS.png');
+background-size: cover;
+background-position: center;
+background-repeat: no-repeat;
+opacity: 0.15;
+z-index: -2;
+animation: backgroundMove 30s ease-in-out infinite;
+}
+
+@keyframes backgroundMove{
+0%, 100%{
+transform: scale(1) translate(0, 0);
+}
+25%{
+transform: scale(1.05) translate(-1%, -1%);
+}
+50%{
+transform: scale(1) translate(0, -2%);
+}
+75%{
+transform: scale(1.05) translate(1%, -1%);
+}
+}
+
 /* Glassmorphism moderno*/
 .glass{
 background: rgba(30, 42, 58, 0.75);
@@ -364,20 +398,24 @@ color: #E31E24;
 color: #EF4444;
 margin-left: 2px;
 }
-/* Logo styles - ACTUALIZADO (MÁS GRANDE) */
+/* Logo styles - ACTUALIZADO: CIRCULAR Y MÁS VISIBLE */
 .navbar-logo{
-height: 60px;
-width: auto;
-object-fit: contain;
+height: 65px;
+width: 65px;
+object-fit: cover;
+border-radius: 50%;
+border: 3px solid #E31E24;
+box-shadow: 0 0 20px rgba(227, 30, 36, 0.5);
 transition: all 0.3s ease;
 }
 .navbar-logo:hover{
-transform: scale(1.08);
-filter: drop-shadow(0 0 10px rgba(227, 30, 36, 0.5));
+transform: scale(1.1);
+box-shadow: 0 0 30px rgba(227, 30, 36, 0.8);
 }
 @media(max-width: 768px){
 .navbar-logo{
-height: 45px;
+height: 50px;
+width: 50px;
 }
 }
 /* Language Switcher Styles */
@@ -405,7 +443,7 @@ transform: translateY(-2px);
 <!-- NAVBAR-->
 <nav class="fixed w-full z-50 top-0 glass border-b border-white/10 transition-all duration-300" id="navbar">
 <div class="container mx-auto px-4 h-16 md:h-20 flex items-center relative">
-<!-- LOGO - Izquierda superior (MÁS GRANDE) -->
+<!-- LOGO - Izquierda superior (CIRCULAR Y MÁS VISIBLE) -->
 <a href="#" class="flex items-center md:absolute md:left-4 md:translate-x-0">
 <img src="MECANICA DUBOIS.png" alt="Mecanica Dubois Logo" class="navbar-logo">
 </a>
@@ -461,7 +499,7 @@ Pre-Diagnóstico
 <div class="absolute inset-0 opacity-30" style="background-image: radial-gradient(circle at 20% 35%, rgba(227, 30, 36, 0.15) 0%, transparent 40%), radial-gradient(circle at 80% 70%, rgba(200, 16, 46, 0.12) 0%, transparent 45%)"></div>
 </div>
 <div id="parallax-container" class="absolute inset-0 overflow-hidden">
-<img id="parallax-img" src="https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?q=80&w=1974&auto=format&fit=crop" alt="Tecnología automotriz avanzada" class="parallax-image w-full h-full object-cover opacity-35 parallax-bg">
+<img id="parallax-img" src="https://images.unsplash.com/photo-1625048516425-0764710a9201?q=80&w=1974&auto=format&fit=crop" alt="Taller mecánico profesional" class="parallax-image w-full h-full object-cover opacity-35 parallax-bg">
 <div class="absolute inset-0 bg-gradient-to-t from-primary-dark via-primary-dark/80 to-transparent"></div>
 </div>
 <div class="container mx-auto px-4 md:px-6 relative z-10 grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
@@ -506,12 +544,6 @@ Tu vehículo habla. Nosotros escuchamos con tecnología de punta. Pre-carga sín
 <div class="hidden lg:block relative fade-in-up" style="animation-delay: 0.4s;">
 <div class="relative">
 <div class="absolute inset-4 bg-gradient-to-r from-primary-red/20 to-primary-red/20 rounded-3xl blur-2xl opacity-60 animate-pulse-slow"></div>
-<img src="https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?q=80&w=1600&auto=format&fit=crop" alt="Técnico especializado con equipo de diagnóstico" class="relative rounded-2xl shadow-2xl border border-white/10 transform hover:scale-[1.02] transition duration-500 hover-glow">
-<!-- Badge flotante -->
-<div class="absolute top-4 right-4 glass-card px-4 py-2.5 rounded-xl flex items-center gap-2 animate-float">
-<i class="fa-solid fa-shield-check text-primary-red"></i>
-<span class="text-sm font-semibold" data-es="Certificado" data-en="Certified">Certificado</span>
-</div>
 </div>
 </div>
 </div>
@@ -1157,7 +1189,7 @@ const name= document.getElementById('inputName').value||'Cliente';
 const phone= document.getElementById('inputPhone').value||'No proporcionado';
 // Mensaje para WhatsApp con el nuevo número
 const message=`🚗 *¡Hola MECANICA DUBOIS!* 👋
-📛 *Cliente:* ${name}
+ *Cliente:* ${name}
 📱 *Contacto:* ${phone}
 🚘 *Tipo de Vehículo:* ${vehicleType}
 *Vehículo:* ${vehicle}
